@@ -1,6 +1,6 @@
 Name:           fdk-aac
 Version:        0.1.4
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Fraunhofer FDK AAC Codec Library
 
 License:        Apache License V2.0
@@ -73,6 +73,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+
+* Fri Jul 08 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 0.1.4-3
+- Massive rebuild
 
 * Tue Feb 23 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 0.1.4-2
 - Rebuilt
