@@ -4,7 +4,7 @@
  
 Summary:        Fraunhofer FDK AAC Codec Library
  
-Version:        0.1.4
+Version:        0.1.5
  
 License:        Apache License V2.0
  

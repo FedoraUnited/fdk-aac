@@ -1,11 +1,11 @@
 Name:           fdk-aac
-Version:        0.1.4
+Version:        0.1.5
 Release:        3%{?dist}
 Summary:        Fraunhofer FDK AAC Codec Library
 
 License:        Apache License V2.0
-URL:            http://sourceforge.net/projects/opencore-amr
-Source0:        http://downloads.sourceforge.net/opencore-amr/%{name}-%{version}.tar.gz
+URL:            https://sourceforge.net/projects/opencore-amr
+Source0:        https://github.com/mstorsjo/fdk-aac/archive/v%{version}.tar.gz
 BuildRequires:  libtool 
 BuildRequires:  gettext
 BuildRequires:  autoconf 
@@ -34,7 +34,7 @@ developing applications that use %{name}.
 
 
 %prep
-%setup -q
+%autosetup -n %{name}-%{version}
 
 
 %build
@@ -73,6 +73,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+
+* Tue Sep 26 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 0.1.5-3
+- Updated to 0.1.5-3
 
 * Fri Jul 08 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 0.1.4-3
 - Massive rebuild
