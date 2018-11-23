@@ -4,3 +4,4 @@ RPMS/*
 SPECS/*
 SRPMS/*
 fdk-aac*.tar.gz
+.directory
