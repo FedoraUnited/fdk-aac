@@ -1,6 +1,6 @@
 Name:           fdk-aac
 Version:        2.0.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Fraunhofer FDK AAC Codec Library
 
 License:        Apache License V2.0
@@ -43,7 +43,7 @@ libtoolize
 aclocal
 automake --add-missing
 autoreconf
-%configure --enable-shared --disable-static
+./configure --prefix=/usr --libdir=%{_libdir}/fdk-aac-freeworld --includedir=%{_includedir}/fdk-aac-freeworld --enable-shared --disable-static
 # make gcc5/gcc6 happy
 make CXXFLAGS='%{optflags} -std=c++11 -Wno-narrowing' V=1 %{?_smp_mflags}
 
@@ -53,6 +53,13 @@ make CXXFLAGS='%{optflags} -std=c++11 -Wno-narrowing' V=1 %{?_smp_mflags}
 make install DESTDIR=$RPM_BUILD_ROOT 
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
+mkdir -p %{buildroot}/usr/share/pkgconfig/
+mv -f %{buildroot}/%{_libdir}/fdk-aac-freeworld/pkgconfig %{buildroot}/usr/share/
+
+mv -f %{buildroot}/%{_includedir}/fdk-aac-freeworld/fdk-aac/*.h %{buildroot}/%{_includedir}/fdk-aac-freeworld
+rm -rf %{buildroot}/%{_includedir}/fdk-aac-freeworld/fdk-aac
+
+
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
@@ -61,18 +68,21 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %files
 %defattr(-,root,root,-)
 %doc ChangeLog NOTICE
-%{_libdir}/*.so.*
+%{_libdir}/fdk-aac-freeworld/*.so.*
 
 %files devel
 %defattr(-,root,root,-)
 %doc documentation/*.pdf
-%dir %{_includedir}/fdk-aac
-%{_includedir}/fdk-aac/*.h
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/%{name}.pc
+%dir %{_includedir}/fdk-aac-freeworld
+%{_includedir}/fdk-aac-freeworld/*.h
+%{_libdir}/fdk-aac-freeworld/*.so
+%{_datadir}/pkgconfig/%{name}.pc
 
 
 %changelog
+
+* Sat Jun 22 2019 David Va <davidva AT tuta DOT io> - 2.0.0-4
+- Changes for avoid conflicts with fdk-aac-free
 
 * Thu Nov 22 2018 David Vásquez <davidjeremias82 AT gmail DOT com> - 2.0.0-3
 - Updated to 2.0.0
