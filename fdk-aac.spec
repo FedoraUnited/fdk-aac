@@ -1,6 +1,6 @@
 Name:           fdk-aac
-Version:        2.0.0
-Release:        4%{?dist}
+Version:        2.0.1
+Release:        5%{?dist}
 Summary:        Fraunhofer FDK AAC Codec Library
 
 License:        Apache License V2.0
@@ -80,6 +80,9 @@ rm -rf %{buildroot}/%{_includedir}/fdk-aac-freeworld/fdk-aac
 
 
 %changelog
+
+* Tue Oct 08 2019 David Va <davidva AT tuta DOT io> - 2.0.1-5
+- Updated to 2.0.1-1
 
 * Sat Jun 22 2019 David Va <davidva AT tuta DOT io> - 2.0.0-4
 - Changes for avoid conflicts with fdk-aac-free
